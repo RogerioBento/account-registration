@@ -29,7 +29,7 @@ public class ClienteController {
     @PostMapping(value = "/clientes")
     public ResponseEntity<?> novoCliente(@Valid @RequestBody ClienteDto cliente) {
         try{
-            ClienteDto newCliente = clienteService.novoCliente(cliente);
+            Cliente newCliente = clienteService.novoCliente(cliente);
             return ResponseEntity.status(HttpStatus.CREATED).body(newCliente);
         } catch (DuplicidadeEncontradaException e) {
             return ResponseEntity.badRequest().body(e.getMessage());

@@ -1,7 +1,7 @@
 package com.desafio.accountregistration.core.dto;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import javax.validation.constraints.NotNull;
 
@@ -31,7 +31,7 @@ public class ClienteDto implements Serializable {
     private String cnh;
 
     @NotNull(message = "O Campo data de nascimento é obrigatório.")
-    private LocalDateTime dataNascimento;
+    private LocalDate dataNascimento;
 
     @NotEmpty(message = "O Campo CPF é obrigatório.")
     @CPF

@@ -7,6 +7,6 @@ import com.desafio.accountregistration.core.model.Cliente;
 
 public interface ClienteService {
     
-    public ClienteDto novoCliente(ClienteDto cliente);
+    public Cliente novoCliente(ClienteDto cliente);
     public List<Cliente> findAll();
 }

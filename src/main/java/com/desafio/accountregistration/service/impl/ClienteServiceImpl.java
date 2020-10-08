@@ -1,6 +1,6 @@
 package com.desafio.accountregistration.service.impl;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,11 +24,11 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Override
     @Transactional
-    public ClienteDto novoCliente(ClienteDto cliente) {
+    public Cliente novoCliente(ClienteDto cliente) {
          Optional<ClienteDto> clienteCpf = clienteRepository.findByCpf(cliente.getCpf());
          Optional<ClienteDto> clienteEmail = clienteRepository.findByEmail(cliente.getEmail());
          Optional<ClienteDto> clienteCnh = clienteRepository.findByCnh(cliente.getCnh());
-         LocalDateTime clienteDataNasc = cliente.getDataNascimento();
+         LocalDate clienteDataNasc = cliente.getDataNascimento();
          if (clienteCpf.isPresent()) {
              throw new DuplicidadeEncontradaException(String.format("Ja existe cliente cadastrado com o CPF " + cliente.getCpf()));
          }
@@ -38,7 +38,7 @@ public class ClienteServiceImpl implements ClienteService {
          if (clienteCnh.isPresent()) {
             throw new DuplicidadeEncontradaException(String.format("Ja existe cliente cadastrado com esta CNH " + cliente.getCnh()));
          }
-         if (!clienteDataNasc.isBefore(LocalDateTime.now().minusYears(18)) || clienteDataNasc.isAfter(LocalDateTime.now())) {
+         if (!clienteDataNasc.isBefore(LocalDate.now().minusYears(18)) || clienteDataNasc.isAfter(LocalDate.now())) {
              throw new ErroDataException(String.format("Erros: " +
                                                        " Preencher apenas se for maior de 18. " +
                                                        " Não é permitido uma data futura. "));
@@ -52,8 +52,7 @@ public class ClienteServiceImpl implements ClienteService {
         entity.setDataNascimento(cliente.getDataNascimento());
         entity.setCpf(cliente.getCpf());
 
-        clienteRepository.save(entity);
-        return new ClienteDto(entity);
+        return clienteRepository.save(entity);
     }
 
     @Override

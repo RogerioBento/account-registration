@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
-class GlobalControllerExceptionHandler {
+public class GlobalControllerExceptionHandler {
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -27,7 +27,7 @@ class GlobalControllerExceptionHandler {
         List<String> errors = new ArrayList<>(fieldErrors.size() + globalErrors.size());
         String error;
         for (FieldError fieldError : fieldErrors) {
-            error = fieldError.getField() + ", " + fieldError.getDefaultMessage();
+            error = fieldError.getDefaultMessage();
             errors.add(error);
         }
         for (ObjectError objectError : globalErrors) {

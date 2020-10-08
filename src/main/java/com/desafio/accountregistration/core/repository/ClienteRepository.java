@@ -6,7 +6,9 @@ import com.desafio.accountregistration.core.dto.ClienteDto;
 import com.desafio.accountregistration.core.model.Cliente;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Long>{
 
 	Optional<ClienteDto> findByCpf(String cpf);
