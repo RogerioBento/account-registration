@@ -1,5 +1,5 @@
 amazonProperties:
   endpointUrl: https://s3.console.aws.amazon.com/s3/buckets/desafiozup
-  accessKey: AKIA4QPW67776JLVSOIV
-  secretKey: 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
+  accessKey: *****
+  secretKey: *****
   bucketName: desafiozup
