@@ -2,9 +2,10 @@
 <p align="center">Desafio ZUP Bootcamp para desenvolver uma API para um banco digital.</p>
 
 Requisições funcionais : 
- - Post e Get em /clientes por enquanto.
- ( New features in development )
-
+ - Post e Get em /clientes.
+ - Post e Get em /enderecos
+ - Post e Get em /upload
+ 
 ## 🚀 Technologies
 
 Tecnologias usadas neste projeto:
