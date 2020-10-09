@@ -10,17 +10,20 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @NoArgsConstructor
 @Entity
 @Table(name = "endereco")
 @AllArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Endereco {
 
     @Id
@@ -49,6 +52,8 @@ public class Endereco {
     
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "id_cliente")
+    @JsonIgnore 
+    @ToString.Exclude
     private Cliente idCliente;
 
 }

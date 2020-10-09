@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
 
 import com.desafio.accountregistration.core.model.Endereco;
 
-import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.NotBlank;
 
 import lombok.Data;
 
@@ -14,22 +14,22 @@ import lombok.Data;
 public class EnderecoDto implements Serializable {
     private static final long serialVersionUID = 1L;
     
-    @NotEmpty(message = "Favor informar o CEP.")
+    @NotBlank(message = "Favor informar o CEP.")
     private String cep;
     
-    @NotEmpty(message = "Favor informar a Rua.")
+    @NotBlank(message = "Favor informar a Rua.")
     private String rua;
 
-    @NotEmpty(message = "Favor informar o Bairro.")
+    @NotBlank(message = "Favor informar o Bairro.")
     private String bairro;
 
-    @NotEmpty(message = "Favor informar o Complemento.")
+    @NotBlank(message = "Favor informar o Complemento.")
     private String complemento;
 
-    @NotEmpty(message = "Favor informar a Cidade.")
+    @NotBlank(message = "Favor informar a Cidade.")
     private String cidade;
 
-    @NotEmpty(message = "Favor informar o Estado.")
+    @NotBlank(message = "Favor informar o Estado.")
     private String estado;
 
     @NotNull(message = "Favor informar o ID do Cliente.")

@@ -19,13 +19,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class EnderecoController {
-    
+
     @Autowired
     private EnderecoService enderecoService;
 
     @PostMapping(value = "/enderecos")
     public ResponseEntity<?> novoEndereco(@Valid @RequestBody EnderecoDto endereco) {
-        try{
+        try {
             Endereco newEndereco = enderecoService.novoEndereco(endereco);
             return ResponseEntity.status(HttpStatus.CREATED).body(newEndereco);
         } catch (CustomInvalidArgumentException e) {
@@ -34,7 +34,7 @@ public class EnderecoController {
     }
 
     @GetMapping(value = "/enderecos")
-    public List<Endereco> buscar(){
-        return enderecoService.findAll();
+    public List<Endereco> buscar() {
+        return enderecoService.buscarTodos();
     }
 }

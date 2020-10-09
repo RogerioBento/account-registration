@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import com.desafio.accountregistration.core.dto.ClienteDto;
+import com.desafio.accountregistration.core.exception.CustomInvalidArgumentException;
 import com.desafio.accountregistration.core.exception.DuplicidadeEncontradaException;
 import com.desafio.accountregistration.core.exception.ErroDataException;
 import com.desafio.accountregistration.core.model.Cliente;
@@ -31,7 +32,7 @@ public class ClienteController {
         try{
             Cliente newCliente = clienteService.novoCliente(cliente);
             return ResponseEntity.status(HttpStatus.CREATED).body(newCliente);
-        } catch (DuplicidadeEncontradaException e) {
+        } catch (DuplicidadeEncontradaException | CustomInvalidArgumentException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         } catch (ErroDataException e) {
             return ResponseEntity.badRequest().body(e.getMessage());        
@@ -40,6 +41,6 @@ public class ClienteController {
 
     @GetMapping(value = "/clientes")
     public List<Cliente> buscar(){
-        return clienteService.findAll();
+        return clienteService.buscarTodos();
     }
 }   

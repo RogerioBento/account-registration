@@ -8,5 +8,5 @@ import com.desafio.accountregistration.core.model.Endereco;
 public interface EnderecoService {
     
     public Endereco novoEndereco(EnderecoDto endereco);
-    public List<Endereco> findAll();
+    public List<Endereco> buscarTodos();
 }

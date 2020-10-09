@@ -3,8 +3,6 @@ package com.desafio.accountregistration.service.impl;
 import java.util.List;
 import java.util.Optional;
 
-import javax.transaction.Transactional;
-
 import com.desafio.accountregistration.core.dto.EnderecoDto;
 import com.desafio.accountregistration.core.exception.CustomInvalidArgumentException;
 import com.desafio.accountregistration.core.model.Cliente;
@@ -27,10 +25,13 @@ public class EnderecoServiceImpl implements EnderecoService {
     private ClienteRepository clienteRepository;
 
     @Override
-    @Transactional
     public Endereco novoEndereco(EnderecoDto endereco) {
         String cep = FormatCepClass.FormatCep(endereco.getCep());
         Optional<Cliente> idCliente = clienteRepository.findById(endereco.getIdCliente());
+        
+        if (idCliente.get().getIdEndereco() != null) {
+            throw new CustomInvalidArgumentException("O Id do cliente informado ja possui um endereço cadastrado.");
+        }
 
         if (idCliente.isEmpty()){
             throw new CustomInvalidArgumentException("O Id do cliente informado não existe na base de dados.");
@@ -50,7 +51,7 @@ public class EnderecoServiceImpl implements EnderecoService {
     }
 
     @Override
-    public List<Endereco> findAll() {
+    public List<Endereco> buscarTodos() {
         return enderecoRepository.findAll();
     }
     

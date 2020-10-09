@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import org.hibernate.validator.constraints.br.CPF;
+import org.springframework.data.annotation.Transient;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -26,11 +27,13 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "cliente")
 @JsonInclude(Include.NON_NULL)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
+    @Transient
     @Column(name = "id_cliente")
     private Long idCliente;
 
@@ -53,7 +56,11 @@ public class Cliente {
     @CPF
     private String cpf;
 
-    @OneToOne(mappedBy = "idCliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    //Campo usado na rotina de salvar os arquivos no S3 e referenciar pela URL vinculado ao cliente que esta sendo cadastrado.
+    //@Column(unique = true)
+    //private String urlFoto;
+
+    @OneToOne(mappedBy = "idCliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Endereco idEndereco;
 
 }
