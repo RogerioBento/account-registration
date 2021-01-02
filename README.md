@@ -1,5 +1,4 @@
-# account-registration-desafio
-<p align="center">Desafio ZUP Bootcamp para desenvolver uma API para um banco digital.</p>
+# account-registration
 
 Requisições funcionais : 
  - Post e Get em /clientes.
